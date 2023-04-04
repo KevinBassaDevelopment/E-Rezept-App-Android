@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.tooling.preview.Preview
 import de.gematik.ti.erp.app.core.complexAutoSaver
 import de.gematik.ti.erp.app.prescription.ui.model.PrescriptionScreenData
 import de.gematik.ti.erp.app.prescription.usecase.PrescriptionUseCase
@@ -66,6 +67,7 @@ class PrescriptionState(
 }
 
 @Composable
+@Preview
 fun rememberPrescriptionState(): PrescriptionState {
     val prescriptionUseCase by rememberInstance<PrescriptionUseCase>()
     val activeProfile = LocalProfileHandler.current.activeProfile
