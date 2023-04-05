@@ -29,7 +29,7 @@ import kotlin.properties.ReadOnlyProperty
 
 fun Project.overriding() =
     PropertyDelegateProvider { _: Any?, _ ->
-        ReadOnlyProperty<Any?, String> { ref, property ->
+        ReadOnlyProperty<Any?, String> { _, property ->
             project.plugins.getPlugin(AppDependenciesPlugin::class).overrideProperties.getProperty(property.name)
                 ?: (project.properties[property.name] as? String)
                 ?: ""
