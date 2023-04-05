@@ -12,7 +12,6 @@ package de.gematik.ti.erp.app
 
 import android.content.Context
 import android.content.Intent
-import timber.log.Timber
 
 /**
  * Implementation of the [ERezeptApp] interface.
@@ -20,9 +19,6 @@ import timber.log.Timber
  * @author RISE GmbH
  */
 internal class ERezeptAppImpl(private val context: Context) : ERezeptApp {
-    init {
-        Timber.d("Creating ERezeptApp SDK ${ERezeptApp.version}")
-    }
 
     override fun open() {
         val intent = Intent(context, MainActivity::class.java)
