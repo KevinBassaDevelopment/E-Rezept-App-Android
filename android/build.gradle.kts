@@ -4,8 +4,12 @@ import org.owasp.dependencycheck.reporting.ReportGenerator.Format
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
+    // id("com.android.application")
     kotlin("android")
+
+
+
     id("org.jetbrains.compose")
     kotlin("plugin.serialization")
     id("io.realm.kotlin")
@@ -44,11 +48,10 @@ licenseReport {
 android {
     namespace = "de.gematik.ti.erp.app"
     defaultConfig {
-        applicationId = "de.gematik.ti.erp.app"
-        versionCode = VERSION_CODE.toInt()
-        versionName = VERSION_NAME
 
-        testApplicationId = "de.gematik.ti.erp.app.test.test"
+        minSdk = 28
+        targetSdk = 33
+        compileSdk = 33
         testInstrumentationRunner = TEST_INSTRUMENTATION_ORCHESTRATOR
         testInstrumentationRunnerArguments += "clearPackageData" to "true"
         testInstrumentationRunnerArguments += "useTestStorageService" to "true"
@@ -116,8 +119,6 @@ android {
 
     buildTypes {
         val release by getting {
-            isMinifyEnabled = true
-            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             if (signingPropsFile.canRead()) {
                 signingConfig = signingConfigs.getByName("googleRelease")
@@ -125,9 +126,7 @@ android {
             resValue("string", "app_label", "E-Rezept")
         }
         val debug by getting {
-            applicationIdSuffix = ".test"
             resValue("string", "app_label", "eRp-Test")
-            versionNameSuffix = "-debug"
             signingConfigs {
                 getByName("debug") {
                     storeFile = file("$rootDir/keystore/debug.keystore")
@@ -150,24 +149,18 @@ android {
         if (flavor?.startsWith("huawei") == true) {
             create(flavor) {
                 dimension = "version"
-                applicationIdSuffix = ".huawei"
-                versionNameSuffix = "-huawei"
                 signingConfig = signingConfigs.findByName("huaweiRelease")
             }
         }
         if (flavor?.startsWith("konnektathonRu") == true) {
             create(flavor) {
                 dimension = "version"
-                applicationIdSuffix = ".konnektathon.ru"
-                versionNameSuffix = "-konnektathon-RU"
                 signingConfig = signingConfigs.findByName("googleRelease")
             }
         }
         if (flavor?.startsWith("konnektathonDevru") == true) {
             create(flavor) {
                 dimension = "version"
-                applicationIdSuffix = ".konnektathon.rudev"
-                versionNameSuffix = "-konnektathon-RUDEV"
                 signingConfig = signingConfigs.findByName("googleRelease")
             }
         }

@@ -12,6 +12,7 @@ tasks.withType<KotlinCompile>() {
 gradlePlugin {
     plugins.register("dependencies") {
         id = "de.gematik.ti.erp.dependencies"
+        version = "1.0.0"
         implementationClass = "de.gematik.ti.erp.AppDependenciesPlugin"
     }
 }

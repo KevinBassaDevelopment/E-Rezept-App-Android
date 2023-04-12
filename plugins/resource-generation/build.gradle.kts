@@ -15,6 +15,7 @@ tasks.withType<KotlinCompile>() {
 gradlePlugin {
     plugins.register("resgen") {
         id = "de.gematik.ti.erp.resgen"
+        version = "1.0.0"
         implementationClass = "de.gematik.ti.erp.ResourceGenerationPlugin"
     }
 }
