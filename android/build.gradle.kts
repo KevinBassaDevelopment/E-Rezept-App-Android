@@ -21,16 +21,16 @@ plugins {
     `maven-publish`
 }
 
-group = "com.rise-world.erezeptexample"
-version = "1.0.0"
+group = "com.rise_world.epa.erezeptexample"
+version = "1.0.1"
 
 publishing {
     publications {
         create<MavenPublication>("mavenAar") {
-            groupId = "com.rise-world.erezeptexample"
-            artifactId = "library"
+            groupId = "com.rise_world.epa.erezeptexample"
+            artifactId = "erezeptexampleDebug"
             artifact("$buildDir/outputs/aar/android-googleTuInternal-debug.aar")
-            version = "1.0.0"
+            version = "1.0.1"
 
             // This generates a POM with the correct coordinates
             pom {

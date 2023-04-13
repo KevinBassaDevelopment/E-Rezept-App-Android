@@ -16,6 +16,41 @@ plugins {
     id("org.jetbrains.compose")
     id("com.codingfeline.buildkonfig")
     id("de.gematik.ti.erp.dependencies")
+
+    // This plugin allows publishing android libraries
+    `maven-publish`
+}
+
+group = "com.rise_world.epa.erezeptcommon"
+version = "1.0.1"
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenAar") {
+            groupId = "com.rise_world.epa.erezeptcommon"
+            artifactId = "erezeptCommonDebug"
+            artifact("$buildDir/outputs/aar/common-debug.aar")
+            version = "1.0.1"
+
+            // This generates a POM with the correct coordinates
+            pom {
+                withXml {
+                    val dependenciesNode = asNode().appendNode("dependencies")
+                    val configurationNames = arrayOf("commonMainApi", "commonMainImplementation")
+                    configurationNames.forEach { configurationName ->
+                        configurations[configurationName].allDependencies.forEach {
+                            if (it.group != null) {
+                                val dependencyNode = dependenciesNode.appendNode("dependency")
+                                dependencyNode.appendNode("groupId", it.group)
+                                dependencyNode.appendNode("artifactId", it.name)
+                                dependencyNode.appendNode("version", it.version)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 fun getGitHash() =
