@@ -8,8 +8,6 @@ plugins {
     // id("com.android.application")
     kotlin("android")
 
-
-
     id("org.jetbrains.compose")
     kotlin("plugin.serialization")
     id("io.realm.kotlin")
@@ -18,6 +16,38 @@ plugins {
     id("com.jaredsburrows.license")
     id("de.gematik.ti.erp.dependencies")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
+    // This plugin allows publishing android libraries
+    `maven-publish`
+}
+
+group = "com.rise-world.erezeptexample"
+version = "1.0.0"
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenAar") {
+            groupId = "com.rise-world.erezeptexample"
+            artifactId = "library"
+            artifact("$buildDir/outputs/aar/android-googleTuInternal-debug.aar")
+            version = "1.0.0"
+
+            // This generates a POM with the correct coordinates
+            pom {
+                withXml {
+                    val dependenciesNode = asNode().appendNode("dependencies")
+                    configurations["implementation"].allDependencies.forEach {
+                        if (it.group != null) {
+                            val dependencyNode = dependenciesNode.appendNode("dependency")
+                            dependencyNode.appendNode("groupId", it.group)
+                            dependencyNode.appendNode("artifactId", it.name)
+                            dependencyNode.appendNode("version", it.version)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 val VERSION_CODE: String by overriding()
