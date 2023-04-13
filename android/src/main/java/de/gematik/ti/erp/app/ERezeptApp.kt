@@ -12,6 +12,8 @@ package de.gematik.ti.erp.app
 
 import android.content.Context
 import androidx.annotation.Keep
+import de.gematik.ti.erp.app.di.allModules
+import org.kodein.di.DI
 
 /**
  * E-Rezept App.
@@ -34,6 +36,13 @@ interface ERezeptApp {
             context: Context
         ): ERezeptApp {
             return ERezeptAppImpl(context)
+        }
+
+        /**
+         * Get all modules required for DI.
+         */
+        fun getAllModules(): DI.Module {
+            return allModules
         }
     }
 
