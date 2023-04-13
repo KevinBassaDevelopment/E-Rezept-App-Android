@@ -1,7 +1,7 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 // NOTE: Only pre-include plugins (apply false) required by the modules android, common
-// and desktop within this block to keep them excluded from the root module.
+// and within this block to keep them excluded from the root module.
 // If the plugin can't be resolved add a custom resolution strategy to `settings.gradle.kts`.
 plugins {
     // reports versions of dependencies
@@ -40,7 +40,6 @@ dependencies {
 val sourcesKt = listOf(
     "android/src/**/de/gematik/**/*.kt",
     "common/src/**/de/gematik/**/*.kt",
-    "desktop/src/**/de/gematik/**/*.kt",
     "rules/src/**/de/gematik/**/*.kt",
     "smartcard-wrapper/src/**/de/gematik/**/*.kt",
     "plugins/*/src/**/*.kt",

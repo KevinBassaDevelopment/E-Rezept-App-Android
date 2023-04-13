@@ -22,7 +22,7 @@ plugins {
 }
 
 group = "com.rise_world.epa.erezeptcommon"
-version = "1.0.1"
+version = "1.0.2"
 
 publishing {
     publications {
@@ -30,7 +30,7 @@ publishing {
             groupId = "com.rise_world.epa.erezeptcommon"
             artifactId = "erezeptCommonDebug"
             artifact("$buildDir/outputs/aar/common-debug.aar")
-            version = "1.0.1"
+            version = "1.0.2"
 
             // This generates a POM with the correct coordinates
             pom {
@@ -100,9 +100,6 @@ val ERP_API_KEY_HUAWEI_PU: String by overriding()
 val ERP_API_KEY_HUAWEI_TU: String by overriding()
 val ERP_API_KEY_HUAWEI_RU: String by overriding()
 val ERP_API_KEY_HUAWEI_TR: String by overriding()
-val ERP_API_KEY_DESKTOP_PU: String by overriding()
-val ERP_API_KEY_DESKTOP_TU: String by overriding()
-val ERP_API_KEY_DESKTOP_RU: String by overriding()
 
 val INTEGRITY_API_KEY: String by overriding()
 val INTEGRITY_VERIFICATION_KEY: String by overriding()
@@ -114,11 +111,6 @@ val DEBUG_VISUAL_TEST_TAGS: String? by project
 
 kotlin {
     android()
-    jvm("desktop") {
-        compilations.all {
-            kotlinOptions.jvmTarget = "15"
-        }
-    }
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -215,22 +207,6 @@ kotlin {
             dependencies {
             }
         }
-        val desktopMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(compose.preview)
-            }
-        }
-        val desktopTest by getting {
-            dependencies {
-                app {
-                    crypto {
-                        implementation(bouncyCastle("bcprov"))
-                        implementation(bouncyCastle("bcpkix"))
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -250,7 +226,7 @@ android {
 }
 
 enum class Platforms {
-    Google, Huawei, Konnektathon, Desktop
+    Google, Huawei, Konnektathon
 }
 
 enum class Environments {
@@ -382,13 +358,6 @@ buildkonfig {
                             Environments.RU -> ERP_API_KEY_GOOGLE_RU
                             Environments.TR -> ERP_API_KEY_GOOGLE_TR
                         }
-                        Platforms.Desktop -> when (environment) {
-                            Environments.PU -> ERP_API_KEY_DESKTOP_PU
-                            Environments.TU -> ERP_API_KEY_DESKTOP_TU
-                            Environments.DEVRU,
-                            Environments.RU -> ERP_API_KEY_DESKTOP_RU
-                            Environments.TR -> ERP_API_KEY_GOOGLE_TR
-                        }
                         Platforms.Huawei -> when (environment) {
                             Environments.PU -> ERP_API_KEY_HUAWEI_PU
                             Environments.TU -> ERP_API_KEY_HUAWEI_TU
@@ -425,9 +394,6 @@ buildkonfig {
     }
 
     targetConfigs {
-        create("desktop") {
-            buildConfigField(STRING, "USER_AGENT", USER_AGENT)
-        }
         create("android") {
             buildConfigField(STRING, "USER_AGENT", USER_AGENT)
             buildConfigField(STRING, "DATA_PROTECTION_LAST_UPDATED", DATA_PROTECTION_LAST_UPDATED)

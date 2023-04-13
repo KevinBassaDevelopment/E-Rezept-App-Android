@@ -52,6 +52,6 @@ includeBuild("smartcard-wrapper") {
 //    }
 //}
 
-include(":android", ":desktop", ":common")
+include(":android", ":common")
 
 rootProject.name = "E-Rezept"
