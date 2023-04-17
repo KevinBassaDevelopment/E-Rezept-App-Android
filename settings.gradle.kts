@@ -55,3 +55,4 @@ includeBuild("smartcard-wrapper") {
 include(":android", ":common")
 
 rootProject.name = "E-Rezept"
+include(":epademo")
