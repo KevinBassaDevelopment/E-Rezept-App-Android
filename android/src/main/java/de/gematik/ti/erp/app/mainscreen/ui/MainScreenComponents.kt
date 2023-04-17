@@ -517,7 +517,8 @@ private fun MainScreenWithScaffold(
     )
 
     LaunchedEffect(Unit) {
-        sheetState.snapTo(ModalBottomSheetValue.Hidden)
+        // sheetState.snapTo(ModalBottomSheetValue.Hidden) // deprecated with compose 1.4
+        sheetState.hide()
     }
 
     LaunchedEffect(mainScreenBottomSheetContentState) {

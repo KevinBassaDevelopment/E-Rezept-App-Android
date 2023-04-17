@@ -22,7 +22,7 @@ plugins {
 }
 
 group = "com.rise_world.epa.erezeptexample"
-version = "1.0.3"
+version = "1.0.4"
 
 publishing {
     publications {
@@ -30,7 +30,7 @@ publishing {
             groupId = "com.rise_world.epa.erezeptexample"
             artifactId = "erezeptexampleDebug"
             artifact("$buildDir/outputs/aar/android-googleTuInternal-debug.aar")
-            version = "1.0.3"
+            version = "1.0.4"
 
             // This generates a POM with the correct coordinates
             pom {

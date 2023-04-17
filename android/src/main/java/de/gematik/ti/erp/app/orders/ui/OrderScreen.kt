@@ -218,7 +218,10 @@ fun MessageScreen(
                 messageState = state,
                 onClickMessage = {
                     selectedMessage = it
-                    scope.launch { sheetState.animateTo(ModalBottomSheetValue.Expanded) }
+                    scope.launch {
+                        // sheetState.animateTo(ModalBottomSheetValue.Expanded) // deprecated with compose 1.4
+                        sheetState.show()
+                    }
                 },
                 onClickPrescription = {
                     mainNavController.navigate(

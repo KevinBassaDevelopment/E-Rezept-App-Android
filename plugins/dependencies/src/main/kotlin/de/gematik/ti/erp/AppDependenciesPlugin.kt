@@ -41,7 +41,7 @@ class AppDependenciesPlugin : Plugin<Project> {
         project.plugins.all {
             if (this is AppPlugin) {
                 project.extensions.getByType(BaseAppModuleExtension::class).apply {
-                    composeOptions.kotlinCompilerExtensionVersion = "1.3.2"
+                    composeOptions.kotlinCompilerExtensionVersion = "1.4.4"
                     buildFeatures {
                         compose = true
                     }
@@ -187,7 +187,7 @@ class AppDependenciesPlugin : Plugin<Project> {
             const val realm = "io.realm.kotlin:library-base:1.6.1"
         }
 
-        const val composeVersion = "1.3.+"
+        const val composeVersion = "1.4.0"
 
         object Compose {
             const val compiler = "androidx.compose.compiler:compiler:$composeVersion"
