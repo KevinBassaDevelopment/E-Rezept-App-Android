@@ -13,14 +13,14 @@ plugins {
     // generates licence report
     id("com.jaredsburrows.license") version "0.8.90" apply false
 
-    kotlin("multiplatform") version "1.7.20" apply false
-    kotlin("plugin.serialization") version "1.7.20" apply false
+    kotlin("multiplatform") version "1.8.10" apply false
+    kotlin("plugin.serialization") version "1.8.10" apply false
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
     id("io.realm.kotlin") version "1.6.1" apply false
-    id("org.jetbrains.kotlin.android") version "1.7.20" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
     id("com.android.application") version "7.3.1" apply false
     id("com.android.library") version "7.3.1" apply false
-    id("org.jetbrains.compose") version "1.3.0" apply false
+    id("org.jetbrains.compose") version "1.4.0" apply false
     id("com.codingfeline.buildkonfig") version "0.13.3" apply false
     id("io.gitlab.arturbosch.detekt") version "1.22.0"
 }

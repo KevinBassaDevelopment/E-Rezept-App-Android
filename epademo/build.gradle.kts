@@ -46,7 +46,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
-    implementation("com.rise_world.epa.erezeptexample:erezeptexampleDebug:1.0.3") {
+    implementation("com.rise_world.epa.erezeptexample:erezeptexampleDebug:1.0.4") {
         // EPA-29052 Once updated to a common variant/version, remove this exclusion
         exclude(module = "bcprov-jdk15to18") // this removes bcprov-jdk15to18 from transitive dependencies to avoid duplicate dependencies
         exclude(module = "bcpkix-jdk15to18") // this removes bcpkix-jdk15to18 from transitive dependencies to avoid duplicate dependencies // TODO erezept
